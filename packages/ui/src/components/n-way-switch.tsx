@@ -21,7 +21,6 @@ type NWaySwitchOption = {
   value: string
   label: string
   icon: React.ReactNode
-  /** Marks this option as the "off" position: selecting it renders without the "on" fill. */
   isOff?: boolean
 }
 
@@ -32,12 +31,6 @@ interface NWaySwitchProps {
   value?: string
   defaultValue?: string
   onValueChange?: (value: string) => void
-  /**
-   * - "none": icons and labels always visible side by side.
-   * - "labels": icon-only segments; each segment's label shows in a tooltip on hover/focus.
-   * - "full": collapsed to just the selected icon; hover (desktop), tap (mobile), or
-   *   keyboard focus expands the track, at which point it behaves like "labels".
-   */
   collapsible?: NWaySwitchCollapsible
   disabled?: boolean
   className?: string
