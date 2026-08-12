@@ -89,8 +89,8 @@ function NWaySwitch({
 
     const colorClassName = isSelected
       ? option.isOff
-        ? "bg-transparent text-foreground hover:bg-transparent aria-pressed:bg-transparent data-[state=on]:bg-transparent"
-        : "bg-primary text-primary-foreground hover:bg-primary aria-pressed:bg-primary data-[state=on]:bg-primary"
+        ? "bg-transparent text-foreground hover:bg-transparent hover:text-foreground aria-pressed:bg-transparent data-[state=on]:bg-transparent"
+        : "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground aria-pressed:bg-primary data-[state=on]:bg-primary"
       : "bg-transparent text-muted-foreground hover:bg-transparent hover:text-foreground aria-pressed:bg-transparent data-[state=on]:bg-transparent"
 
     const toggle = (
