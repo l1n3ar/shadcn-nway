@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "shadcn-3way-switch",
+  "homepage": "https://shadcn-3way-switch.vercel.app",
+  "items": [
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "three-way-switch",
+      "type": "registry:component",
+      "title": "Three Way Switch",
+      "description": "An exclusive-select, N-position toggle switch with icons, labels, and a sliding indicator, built on Base UI's Toggle Group.",
+      "dependencies": ["@base-ui/react"],
+      "files": [
+        {
+          "path": "../../packages/ui/src/components/three-way-switch.tsx",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}
