@@ -21,7 +21,7 @@ import {
   type NWaySwitchCollapsible,
   type NWaySwitchOption,
 } from "@workspace/ui/components/n-way-switch"
-import { cn } from "@workspace/ui/lib/utils"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@workspace/ui/components/tabs"
 
 const SEARCH_OPTIONS: NWaySwitchOption[] = [
   { value: "off", label: "Off", icon: <PowerOff />, isOff: true },
@@ -160,39 +160,37 @@ export default function Page() {
         a dedicated off state.
       </p>
 
-      <div className="flex flex-col gap-4 rounded-xl border p-5">
-        <div className="bg-muted flex items-center gap-1 self-start rounded-lg p-1">
+      <Tabs
+        value={mode}
+        onValueChange={(next) => setMode(next as NWaySwitchCollapsible)}
+        className="rounded-xl border p-5"
+      >
+        <TabsList className="self-start">
           {MODES.map((m) => (
-            <button
-              key={m.value}
-              type="button"
-              onClick={() => setMode(m.value)}
-              className={cn(
-                "rounded-md px-3 py-1.5 text-sm font-medium",
-                mode === m.value
-                  ? "bg-background text-foreground shadow-sm"
-                  : "text-muted-foreground hover:text-foreground"
-              )}
-            >
+            <TabsTrigger key={m.value} value={m.value}>
               {m.label}
-            </button>
+            </TabsTrigger>
           ))}
-        </div>
+        </TabsList>
 
-        <div className="flex min-h-16 items-center justify-center rounded-lg border border-dashed p-8">
-          <NWaySwitch
-            aria-label="Search mode"
-            options={SEARCH_OPTIONS}
-            collapsible={mode}
-            value={value}
-            onValueChange={setValue}
-          />
-        </div>
+        {MODES.map((m) => (
+          <TabsContent key={m.value} value={m.value} className="flex flex-col gap-4">
+            <div className="flex min-h-16 items-center justify-center rounded-lg border border-dashed p-8">
+              <NWaySwitch
+                aria-label="Search mode"
+                options={SEARCH_OPTIONS}
+                collapsible={m.value}
+                value={value}
+                onValueChange={setValue}
+              />
+            </div>
 
-        <pre className="bg-muted overflow-x-auto rounded-lg p-4 text-xs">
-          <code>{USAGE_SNIPPETS[mode]}</code>
-        </pre>
-      </div>
+            <pre className="bg-muted overflow-x-auto rounded-lg p-4 text-xs">
+              <code>{USAGE_SNIPPETS[m.value]}</code>
+            </pre>
+          </TabsContent>
+        ))}
+      </Tabs>
 
       <div className="flex flex-col gap-4 rounded-xl border p-5">
         <div>
