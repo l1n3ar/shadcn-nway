@@ -1,9 +1,15 @@
 "use client"
 
 import * as React from "react"
-import { Toggle } from "@base-ui/react/toggle"
-import { ToggleGroup } from "@base-ui/react/toggle-group"
-import { Tooltip } from "@base-ui/react/tooltip"
+
+import { Toggle } from "@workspace/ui/components/toggle"
+import { ToggleGroup } from "@workspace/ui/components/toggle-group"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@workspace/ui/components/tooltip"
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
@@ -39,7 +45,7 @@ interface NWaySwitchProps {
 }
 
 const itemBaseClassName =
-  "focus-visible:ring-ring/50 relative z-10 flex cursor-pointer items-center justify-center rounded-full border-none outline-none focus-visible:ring-3 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0"
+  "focus-visible:ring-ring/50 relative z-10 flex h-auto min-w-0 cursor-pointer items-center justify-center gap-1.5 rounded-full border-none p-0 outline-none focus-visible:ring-3 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0"
 
 function NWaySwitch({
   options,
@@ -83,9 +89,9 @@ function NWaySwitch({
 
     const colorClassName = isSelected
       ? option.isOff
-        ? "bg-transparent text-foreground"
-        : "bg-primary text-primary-foreground"
-      : "bg-transparent text-muted-foreground hover:text-foreground"
+        ? "bg-transparent text-foreground hover:bg-transparent aria-pressed:bg-transparent data-[state=on]:bg-transparent"
+        : "bg-primary text-primary-foreground hover:bg-primary aria-pressed:bg-primary data-[state=on]:bg-primary"
+      : "bg-transparent text-muted-foreground hover:bg-transparent hover:text-foreground aria-pressed:bg-transparent data-[state=on]:bg-transparent"
 
     const toggle = (
       <Toggle
@@ -95,7 +101,7 @@ function NWaySwitch({
         className={cn(
           itemBaseClassName,
           colorClassName,
-          showTooltips ? "size-7" : "h-7 gap-1.5 px-2.5 text-sm font-medium whitespace-nowrap"
+          showTooltips ? "size-7" : "h-7 px-2.5 text-sm font-medium whitespace-nowrap"
         )}
       >
         {option.icon}
@@ -106,16 +112,12 @@ function NWaySwitch({
     const item = !showTooltips ? (
       toggle
     ) : (
-      <Tooltip.Root>
-        <Tooltip.Trigger render={toggle} />
-        <Tooltip.Portal>
-          <Tooltip.Positioner side="top" sideOffset={6}>
-            <Tooltip.Popup className="bg-foreground text-background rounded-md px-2 py-1 text-xs font-medium shadow-md">
-              {option.label}
-            </Tooltip.Popup>
-          </Tooltip.Positioner>
-        </Tooltip.Portal>
-      </Tooltip.Root>
+      <Tooltip>
+        <TooltipTrigger render={toggle} />
+        <TooltipContent side="top" sideOffset={6}>
+          {option.label}
+        </TooltipContent>
+      </Tooltip>
     )
 
     if (!isFull) return <React.Fragment key={option.value}>{item}</React.Fragment>
@@ -142,7 +144,7 @@ function NWaySwitch({
       onBlur={closeIfFull}
       className="inline-flex"
     >
-      <Tooltip.Provider delay={200} closeDelay={0}>
+      <TooltipProvider delay={200} closeDelay={0}>
         <ToggleGroup
           data-slot="n-way-switch"
           aria-label={ariaLabel}
@@ -150,16 +152,16 @@ function NWaySwitch({
           onValueChange={handleValueChange}
           onClick={openIfFull}
           disabled={disabled}
+          spacing={isFull ? 0 : 2}
           className={cn(
-            "relative inline-flex items-center rounded-full border border-transparent p-1",
+            "relative inline-flex w-fit items-center rounded-full border border-transparent p-1",
             isOpen ? "bg-muted" : "bg-transparent",
-            !isFull && "gap-0.5",
             className
           )}
         >
           {options.map(renderItem)}
         </ToggleGroup>
-      </Tooltip.Provider>
+      </TooltipProvider>
     </div>
   )
 }
