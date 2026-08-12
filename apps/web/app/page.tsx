@@ -73,6 +73,7 @@ const USAGE_SNIPPETS: Record<NWaySwitchCollapsible, string> = {
 }
 
 
+
 const PROPS: { name: string; type: string; default: string; description: string }[] = [
   {
     name: "options",
@@ -216,8 +217,7 @@ function SiteHeader() {
             }
           >
             <Code2 />
-            <span className="hidden sm:inline">Repository</span>
-    
+       <span className="hidden sm:inline">Repository</span>
           </Button>
           <ThemeToggle />
 
@@ -247,14 +247,14 @@ function SiteFooter() {
           l1n3ar
         </a>
       </span>
-
-      Source on  <a
+      <a
         href="https://github.com/l1n3ar/shadcn-nway"
         target="_blank"
         rel="noreferrer"
         className="text-foreground hover:underline"
-      > GitHub  </a>
-
+      >
+        Source on GitHub
+      </a>
     </footer>
   )
 }
@@ -308,7 +308,7 @@ export default function Page() {
 
             {MODES.map((m) => (
               <TabsContent key={m.value} value={m.value} className="flex flex-col gap-3">
-                <div className="flex min-h-16  items-center justify-center rounded-lg border border-dashed p-6">
+                <div className="flex min-h-16 items-center justify-center rounded-lg border border-dashed p-6">
                   <NWaySwitch
                     aria-label="Search mode"
                     options={SEARCH_OPTIONS}
