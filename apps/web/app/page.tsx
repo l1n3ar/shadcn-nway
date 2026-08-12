@@ -233,7 +233,7 @@ function SiteHeader() {
             variant="outline"
             render={
               <a
-                href="https://github.com/l1n3ar/shadcn-3way-switch"
+                href="https://github.com/l1n3ar/shadcn-nway"
                 target="_blank"
                 rel="noreferrer"
               />
