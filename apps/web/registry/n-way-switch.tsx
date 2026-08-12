@@ -1,20 +1,21 @@
 "use client"
 
-// Distributed via the shadcn registry from apps/web/registry/n-way-switch.tsx
-// (standard "@/" aliases there instead of this monorepo's "@workspace/ui").
-// Keep the two in sync.
+// Standalone copy for the shadcn registry (registry.json points here). Uses
+// standard "@/" aliases instead of this monorepo's "@workspace/ui" alias, so
+// it resolves in any project the registry installs into. Keep in sync with
+// packages/ui/src/components/n-way-switch.tsx.
 
 import * as React from "react"
 
-import { Toggle } from "@workspace/ui/components/toggle"
-import { ToggleGroup } from "@workspace/ui/components/toggle-group"
+import { Toggle } from "@/components/ui/toggle"
+import { ToggleGroup } from "@/components/ui/toggle-group"
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@workspace/ui/components/tooltip"
-import { cn } from "@workspace/ui/lib/utils"
+} from "@/components/ui/tooltip"
+import { cn } from "@/lib/utils"
 
 type NWaySwitchOption = {
   value: string
