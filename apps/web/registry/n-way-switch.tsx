@@ -1,10 +1,5 @@
 "use client"
 
-// Standalone copy for the shadcn registry (registry.json points here). Uses
-// standard "@/" aliases instead of this monorepo's "@workspace/ui" alias, so
-// it resolves in any project the registry installs into. Keep in sync with
-// packages/ui/src/components/n-way-switch.tsx.
-
 import * as React from "react"
 
 import { Toggle } from "@/components/ui/toggle"
