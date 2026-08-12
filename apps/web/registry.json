@@ -9,7 +9,7 @@
       "type": "registry:component",
       "title": "N-Way Switch",
       "description": "An exclusive-select, N-position toggle switch with icons, labels, and off/on styling, built on Base UI's Toggle Group.",
-      "dependencies": ["@base-ui/react"],
+      "dependencies": ["@base-ui/react", "clsx", "tailwind-merge"],
       "files": [
         {
           "path": "../../packages/ui/src/components/n-way-switch.tsx",

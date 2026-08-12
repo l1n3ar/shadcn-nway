@@ -4,6 +4,7 @@ import * as React from "react"
 import {
   AppWindow,
   Check,
+  Code2,
   Copy,
   FolderSearch,
   Globe,
@@ -79,6 +80,7 @@ function ThemeToggle() {
       variant="ghost"
       aria-label="Toggle theme"
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+      className='hover:cursor-pointer'
     >
       {mounted && resolvedTheme === "dark" ? <Sun /> : <Moon />}
     </Button>
@@ -92,10 +94,10 @@ function SiteHeader() {
         <ToggleLeft className="text-primary size-5" />
         <span className="text-sm font-medium">N-Way Switch</span>
       </div>
-      <div className="flex items-center gap-0.5">
+      <div className="flex items-center gap-2">
         <Button
           size="sm"
-          variant="ghost"
+          variant="outline"
           render={
             <a
               href="https://github.com/l1n3ar/shadcn-3way-switch"
@@ -104,6 +106,7 @@ function SiteHeader() {
             />
           }
         >
+          <Code2 />
           Repository
         </Button>
         <ThemeToggle />
