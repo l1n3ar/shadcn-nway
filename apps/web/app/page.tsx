@@ -72,30 +72,6 @@ const USAGE_SNIPPETS: Record<NWaySwitchCollapsible, string> = {
   full: snippetFor("full"),
 }
 
-const FOUR_WAY_SNIPPET = `import { AppWindow, FolderSearch, Globe, PowerOff } from "lucide-react"
-import { NWaySwitch } from "@/components/ui/n-way-switch"
-
-const options = [
-  { value: "off", label: "Off", icon: <PowerOff />, isOff: true },
-  { value: "provider", label: "Provider Search", icon: <Globe /> },
-  { value: "app", label: "App Search", icon: <AppWindow /> },
-  { value: "local", label: "Local Search", icon: <FolderSearch /> },
-]
-
-export function SearchModeSwitch() {
-  const [value, setValue] = useState("provider")
-
-  return (
-    <NWaySwitch
-      aria-label="Search mode"
-      collapsible="labels"
-      options={options}
-      value={value}
-      onValueChange={setValue}
-    />
-  )
-}
-`
 
 const PROPS: { name: string; type: string; default: string; description: string }[] = [
   {
@@ -227,7 +203,7 @@ function SiteHeader() {
           <ToggleLeft className="text-primary size-5" />
           <span className="text-lg font-medium">N-Way Switch</span>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1">
           <Button
             size="sm"
             variant="outline"
@@ -240,7 +216,8 @@ function SiteHeader() {
             }
           >
             <Code2 />
-            Repository
+            <span className="hidden sm:inline">Repository</span>
+    
           </Button>
           <ThemeToggle />
 
@@ -270,14 +247,14 @@ function SiteFooter() {
           l1n3ar
         </a>
       </span>
-      <a
+
+      Source on  <a
         href="https://github.com/l1n3ar/shadcn-nway"
         target="_blank"
         rel="noreferrer"
         className="text-foreground hover:underline"
-      >
-        Source on GitHub
-      </a>
+      > GitHub  </a>
+
     </footer>
   )
 }
@@ -331,7 +308,7 @@ export default function Page() {
 
             {MODES.map((m) => (
               <TabsContent key={m.value} value={m.value} className="flex flex-col gap-3">
-                <div className="flex min-h-16 items-center justify-center rounded-lg border border-dashed p-6">
+                <div className="flex min-h-16  items-center justify-center rounded-lg border border-dashed p-6">
                   <NWaySwitch
                     aria-label="Search mode"
                     options={SEARCH_OPTIONS}

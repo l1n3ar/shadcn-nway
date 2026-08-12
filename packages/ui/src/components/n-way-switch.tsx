@@ -93,7 +93,7 @@ function NWaySwitch({
         className={cn(
           itemBaseClassName,
           colorClassName,
-          showTooltips ? "size-7" : "h-7 px-2.5 text-sm font-medium whitespace-nowrap"
+          showTooltips ? "size-7" : "h-7 px-2.5 text-xs sm:text-sm font-medium whitespace-nowrap"
         )}
       >
         {option.icon}
