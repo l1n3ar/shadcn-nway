@@ -271,7 +271,7 @@ function SiteFooter() {
         </a>
       </span>
       <a
-        href="https://github.com/l1n3ar/shadcn-3way-switch"
+        href="https://github.com/l1n3ar/shadcn-nway"
         target="_blank"
         rel="noreferrer"
         className="text-foreground hover:underline"

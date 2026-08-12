@@ -112,4 +112,4 @@ from `@workspace/ui/components/<component>`.
 ## Credits
 
 Built by [l1n3ar](https://github.com/l1n3ar). Source available on
-[GitHub](https://github.com/l1n3ar/shadcn-3way-switch).
+[GitHub](https://github.com/l1n3ar/shadcn-nway).
