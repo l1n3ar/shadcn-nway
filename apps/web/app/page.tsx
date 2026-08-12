@@ -1,7 +1,18 @@
 "use client"
 
 import * as React from "react"
-import { AppWindow, Check, Copy, FolderSearch, Globe, PowerOff } from "lucide-react"
+import {
+  AppWindow,
+  Check,
+  Copy,
+  FolderSearch,
+  Globe,
+  Moon,
+  PowerOff,
+  Sun,
+  ToggleLeft,
+} from "lucide-react"
+import { useTheme } from "next-themes"
 
 import { Button } from "@workspace/ui/components/button"
 import {
@@ -56,6 +67,51 @@ const USAGE_SNIPPETS: Record<NWaySwitchCollapsible, string> = {
 />`,
 }
 
+function ThemeToggle() {
+  const { resolvedTheme, setTheme } = useTheme()
+  const [mounted, setMounted] = React.useState(false)
+
+  React.useEffect(() => setMounted(true), [])
+
+  return (
+    <Button
+      size="icon-sm"
+      variant="ghost"
+      aria-label="Toggle theme"
+      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+    >
+      {mounted && resolvedTheme === "dark" ? <Sun /> : <Moon />}
+    </Button>
+  )
+}
+
+function SiteHeader() {
+  return (
+    <header className="flex items-center justify-between">
+      <div className="flex items-center gap-1.5">
+        <ToggleLeft className="text-primary size-5" />
+        <span className="text-sm font-medium">N-Way Switch</span>
+      </div>
+      <div className="flex items-center gap-0.5">
+        <Button
+          size="sm"
+          variant="ghost"
+          render={
+            <a
+              href="https://github.com/l1n3ar/shadcn-3way-switch"
+              target="_blank"
+              rel="noreferrer"
+            />
+          }
+        >
+          Repository
+        </Button>
+        <ThemeToggle />
+      </div>
+    </header>
+  )
+}
+
 function InstallCommand() {
   const [origin, setOrigin] = React.useState("")
   const [copied, setCopied] = React.useState(false)
@@ -93,16 +149,15 @@ export default function Page() {
   const [value4, setValue4] = React.useState("provider")
 
   return (
-    <div className="mx-auto flex min-h-svh max-w-2xl flex-col gap-10 p-6 py-16">
-      <div className="flex flex-col gap-2">
-        <h1 className="text-2xl font-semibold">N-Way Switch</h1>
-        <p className="text-muted-foreground text-sm">
-          An exclusive-select toggle switch for any number of options, with icons, labels,
-          and a dedicated off state.
-        </p>
-      </div>
+    <div className="mx-auto flex min-h-svh max-w-xl flex-col gap-8 p-6 py-8">
+      <SiteHeader />
 
-      <div className="flex flex-col gap-4 rounded-xl border p-6">
+      <p className="text-muted-foreground -mt-2 text-sm">
+        An exclusive-select toggle switch for any number of options, with icons, labels, and
+        a dedicated off state.
+      </p>
+
+      <div className="flex flex-col gap-4 rounded-xl border p-5">
         <div className="bg-muted flex items-center gap-1 self-start rounded-lg p-1">
           {MODES.map((m) => (
             <button
@@ -136,7 +191,7 @@ export default function Page() {
         </pre>
       </div>
 
-      <div className="flex flex-col gap-4 rounded-xl border p-6">
+      <div className="flex flex-col gap-4 rounded-xl border p-5">
         <div>
           <h2 className="font-medium">4-way example</h2>
           <p className="text-muted-foreground text-sm">

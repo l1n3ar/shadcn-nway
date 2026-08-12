@@ -4,8 +4,12 @@ import * as React from "react"
 import { Toggle } from "@base-ui/react/toggle"
 import { ToggleGroup } from "@base-ui/react/toggle-group"
 import { Tooltip } from "@base-ui/react/tooltip"
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
 
-import { cn } from "@workspace/ui/lib/utils"
+function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
 
 type NWaySwitchOption = {
   value: string
@@ -35,7 +39,7 @@ interface NWaySwitchProps {
 }
 
 const itemBaseClassName =
-  "focus-visible:ring-ring/50 relative z-10 flex items-center justify-center rounded-full border-none outline-none focus-visible:ring-3 disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0"
+  "focus-visible:ring-ring/50 relative z-10 flex cursor-pointer items-center justify-center rounded-full border-none outline-none focus-visible:ring-3 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0"
 
 function NWaySwitch({
   options,
