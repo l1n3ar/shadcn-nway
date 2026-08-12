@@ -27,12 +27,9 @@ Install directly into your own project with the shadcn CLI, pointing at this
 project's registry endpoint:
 
 ```bash
-npx shadcn@latest add https://your-domain.com/r/n-way-switch.json
+npx shadcn@latest add https://shadcn-nway-switch.vercel.app/r/n-way-switch.json
 ```
 
-Replace `https://your-domain.com` with wherever `apps/web` is deployed. Run
-`apps/web` locally and open the Installation section on the demo page for the
-exact command with your current origin filled in.
 
 ## Usage
 
